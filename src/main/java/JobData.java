@@ -104,16 +104,15 @@ public class JobData {
     }
         return jobs;
 }
-/*
+    /* OLD ATTEMPT AT THIS METHOD
         for (HashMap<String, String> aJob : allJobs) { // iterate over the rows of the CSV file
             if (aJob.containsValue(value)) { // MW this works but returns partial values only for exact matches
                     jobs.add(aJob);
-                    //break;
                 }
             }
         return jobs;
         }
-         */
+    */
 
     /**
      * Read in data from a CSV file and store it in a list
