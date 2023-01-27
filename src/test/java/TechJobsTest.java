@@ -68,6 +68,4 @@ public class TechJobsTest {
         String expected = getFileContents("src/test/resources/testCaseInsensitiveSearch.txt");
         assertEquals(expected, output);
     }
-
-
 }

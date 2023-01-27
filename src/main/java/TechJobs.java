@@ -125,15 +125,13 @@ public class TechJobs {
             System.out.print("No Results");
         } else { // if data IS returned from the search, iterate over returns and print in this format
             for (HashMap aJob : someJobs) {
-                System.out.println("\n*****");
-                System.out.println("position type: " + aJob.get("position type")); // someJobs.get(0).get("position type");
+                System.out.println("\n*****"); // newline at top of entry
+                System.out.println("position type: " + aJob.get("position type")); // note to self: someJobs.get(0).get("position type");
                 System.out.println("name: " + aJob.get("name"));
                 System.out.println("employer: " + aJob.get("employer"));
                 System.out.println("location: " + aJob.get("location"));
                 System.out.println("core competency: " + aJob.get("core competency"));
                 System.out.println("*****");
-                // if printed entry is NOT the last to print, add a blank line underneath it and loop again.
-                // if printed entry IS the last returned, do NOT add a blank line underneath it, and exit loop.
             }
         }
     }
