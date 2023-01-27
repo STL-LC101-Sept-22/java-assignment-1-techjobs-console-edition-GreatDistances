@@ -5,10 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -74,16 +71,12 @@ public class JobData {
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
-
         for (HashMap<String, String> row : allJobs) {
-
             String aValue = row.get(column);
-
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value.toLowerCase())) { // MW added case insensitivity
                 jobs.add(row);
             }
         }
-
         return jobs;
     }
 
@@ -95,12 +88,31 @@ public class JobData {
      */
     public static ArrayList<HashMap<String, String>> findByValue(String value) {
 
-        // load data, if not already loaded
+        // load data, if not already loaded. (Leave this as first line of method)
         loadData();
 
         // TODO - implement this method
-        return null;
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>(); // new Array to hold HashMaps with results
+
+        for (HashMap<String, String> allJobsItem : allJobs) { // outer loop
+            for (Map.Entry<String, String> item : allJobsItem.entrySet()) { // inner loop
+                String checker = item.getValue().toLowerCase(); // initialize string variable to check "value" against
+                if (checker.contains(value.toLowerCase())) { // conditional to verify if job is a match, case insensitive
+                    jobs.add(allJobsItem); // add verified job HashMap into "jobs" ArrayList
+                }
+            }
+        }
+        return jobs;
     }
+    /* OLD ATTEMPT AT THIS METHOD
+        for (HashMap<String, String> aJob : allJobs) { // iterate over the rows of the CSV file
+            if (aJob.containsValue(value)) { // MW this works but returns partial values only for exact matches
+                    jobs.add(aJob);
+                }
+            }
+        return jobs;
+        }
+    */
 
     /**
      * Read in data from a CSV file and store it in a list
